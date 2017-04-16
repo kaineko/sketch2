@@ -206,7 +206,7 @@ window.onload = function () {
 		offsetY5 = mouseY5 - positionY5;
 		});
 		//左ボタンが押されたら描画準備
-		canvas.onmousedown = function(e){
+		canvas.ontouchstart = function(e){
 			ctx.beginPath();
 			ctx.moveTo(offsetX,offsetY);
 			ctx.lineTo(offsetX,offsetY);
@@ -215,7 +215,7 @@ window.onload = function () {
 			ctx.stroke();
 		};
 		//ポインタが動いたら描画
-		canvas.onmousemove = function(e){
+		canvas.touchmove = function(e){
 			if(e.buttons === 1){
 			memoryLog = [];
 			ctx.lineTo(offsetX2,offsetY2);
@@ -227,7 +227,7 @@ window.onload = function () {
 		/*左ボタンが離されたらpathLogを作成し、sketchLogへ保存後削除する。
 		　また、lineToXLogとlineToYLogも初期化しておく。
 		*/
-		canvas.onmouseup = function(e){
+		canvas.ontouchend = function(e){
 			pathLog.push(ctx.strokeStyle,ctx.lineWidth,offsetX,offsetY,lineToXLog,lineToYLog);
 			sketchLog.push(pathLog);
 			pathLog = [];
