@@ -154,7 +154,7 @@ window.onload = function () {
 		//ポインタの座標を取得
 		var offsetX;
 		var offsetY;
-		canvas.addEventListener('mousedown',function(e){
+		canvas.addEventListener('touchstart',function(e){
 		var mouseX = e.pageX;
 		var mouseY = e.pageY;
 		var canvasRect = canvas.getBoundingClientRect();
@@ -165,7 +165,7 @@ window.onload = function () {
 		});
 		var offsetX2;
 		var offsetY2;
-		canvas.addEventListener('mousemove',function(e){
+		canvas.addEventListener('touchmove',function(e){
 		var mouseX2 = e.pageX;
 		var mouseY2 = e.pageY;
 		var canvasRect2 = canvas.getBoundingClientRect();
@@ -176,7 +176,7 @@ window.onload = function () {
 		});
 		var offsetX3;
 		var offsetY3;
-		canvas.addEventListener('mouseup',function(e){
+		canvas.addEventListener('touchend',function(e){
 		var mouseX3 = e.pageX;
 		var mouseY3 = e.pageY;
 		var canvasRect3 = canvas.getBoundingClientRect();
