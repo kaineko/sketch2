@@ -240,7 +240,7 @@ window.onload = function () {
 			lineToYLog =[];
 		};
 		//ポインタが画面外へ出て行った時の挙動
-		canvas.ontouchleave = function (e){
+		canvas.onTouchLeave = function (e){
 			memoryLog = [];
 			pathLog.push(ctx.strokeStyle,ctx.lineWidth,offsetX1,offsetY1,lineToXLog,lineToYLog);
 			sketchLog.push(pathLog);
@@ -249,7 +249,7 @@ window.onload = function () {
 			lineToYLog =[];
 		};
 		//ポインタが画面内へ入った時の挙動
-		canvas.ontouchenter = function(e){
+		canvas.onTouchEnter = function(e){
 			 ctx.beginPath();
 			 ctx.moveTo(offsetX5,offsetY5);
 			 offsetX1 = offsetX5;
