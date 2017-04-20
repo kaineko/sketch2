@@ -152,107 +152,108 @@ window.onload = function () {
 			}
 		};
 		//ポインタの座標を取得
-		var offsetX;
-		var offsetY;
+		var offsetX1;
+		var offsetY1;
 		canvas.addEventListener('touchstart',function(e){
-		var mouseX = e.pageX;
-		var mouseY = e.pageY;
+		var touchObj = e.changedTouches[0] ;
+		var mouseX1 = touchObj.pageX;
+		var mouseY1 = touchObj.pageY;
 		var canvasRect = canvas.getBoundingClientRect();
-		var positionX = canvasRect.left + window.scrollX;
-		var positionY = canvasRect.top + window.scrollY;	
-		offsetX = mouseX - positionX;
-		offsetY = mouseY - positionY;
+		var positionX1 = canvasRect.left + window.pageXOffset;
+		var positionY1 = canvasRect.top + window.pageYOffset;	
+		offsetX1 = mouseX1 - positionX1;
+		offsetY1 = mouseY1 - positionY1;
 		});
 		var offsetX2;
 		var offsetY2;
 		canvas.addEventListener('touchmove',function(e){
-		var mouseX2 = e.pageX;
-		var mouseY2 = e.pageY;
-		var canvasRect2 = canvas.getBoundingClientRect();
-		var positionX2 = canvasRect2.left + window.scrollX;
-		var positionY2 = canvasRect2.top + window.scrollY;	
+		var touchObj = e.changedTouches[0] ;
+		var mouseX2 = touchObj.pageX;
+		var mouseY2 = touchObj.pageY;
+		var canvasRect = canvas.getBoundingClientRect();
+		var positionX2 = canvasRect.left + window.pageXOffset;
+		var positionY2 = canvasRect.top + window.pageYOffset;	
 		offsetX2 = mouseX2 - positionX2;
 		offsetY2 = mouseY2 - positionY2;
 		});
 		var offsetX3;
 		var offsetY3;
 		canvas.addEventListener('touchend',function(e){
-		var mouseX3 = e.pageX;
-		var mouseY3 = e.pageY;
-		var canvasRect3 = canvas.getBoundingClientRect();
-		var positionX3 = canvasRect3.left + window.scrollX;
-		var positionY3 = canvasRect3.top + window.scrollY;	
+		var touchObj = e.changedTouches[0] ;
+		var mouseX3 = touchObj.pageX;
+		var mouseY3 = touchObj.pageY;
+		var canvasRect = canvas.getBoundingClientRect();
+		var positionX3 = canvasRect.left + window.pageXOffset;
+		var positionY3 = canvasRect.top + window.pageYOffset;	
 		offsetX3 = mouseX3 - positionX3;
 		offsetY3 = mouseY3 - positionY3;
 		});
 		var offsetX4;
 		var offsetY4;
-		canvas.addEventListener('mouseout',function(e){
-		var mouseX4 = e.pageX;
-		var mouseY4 = e.pageY;
-		var canvasRect4 = canvas.getBoundingClientRect();
-		var positionX4 = canvasRect4.left + window.scrollX;
-		var positionY4 = canvasRect4.top + window.scrollY;	
+		canvas.addEventListener('touchleave',function(e){
+		var touchObj = e.changedTouches[0] ;
+		var mouseX4 = touchObj.pageX;
+		var mouseY4 = touchObj.pageY;
+		var canvasRect = canvas.getBoundingClientRect();
+		var positionX4 = canvasRect.left + window.pageXOffset;
+		var positionY4 = canvasRect.top + window.pageYOffset;	
 		offsetX4 = mouseX4 - positionX4;
 		offsetY4 = mouseY4 - positionY4;
 		});
-		canvas.addEventListener('mouseover',function(e){
-		var mouseX5 = e.pageX;
-		var mouseY5 = e.pageY;
-		var canvasRect5 = canvas.getBoundingClientRect();
-		var positionX5 = canvasRect5.left + window.scrollX;
-		var positionY5 = canvasRect5.top + window.scrollY;	
+		var offsetX5;
+		var offsetY5;
+		canvas.addEventListener('touchenter',function(e){
+		var touchObj = e.changedTouches[0] ;
+		var mouseX5 = touchObj.pageX;
+		var mouseY5 = touchObj.pageY;
+		var canvasRect = canvas.getBoundingClientRect();
+		var positionX5 = canvasRect.left + window.pageXOffset;
+		var positionY5 = canvasRect.top + window.pageYOffset;	
 		offsetX5 = mouseX5 - positionX5;
 		offsetY5 = mouseY5 - positionY5;
 		});
 		//左ボタンが押されたら描画準備
 		canvas.ontouchstart = function(e){
 			ctx.beginPath();
-			ctx.moveTo(offsetX,offsetY);
-			ctx.lineTo(offsetX,offsetY);
-			lineToXLog.push(offsetX);
-			lineToYLog.push(offsetY);
+			ctx.moveTo(offsetX1,offsetY1);
+			ctx.lineTo(offsetX1,offsetY1);
+			lineToXLog.push(offsetX1);
+			lineToYLog.push(offsetY1);
 			ctx.stroke();
 		};
 		//ポインタが動いたら描画
-		canvas.touchmove = function(e){
-			if(e.buttons === 1){
+		canvas.ontouchmove = function(e){
 			memoryLog = [];
 			ctx.lineTo(offsetX2,offsetY2);
 			lineToXLog.push(offsetX2);
 			lineToYLog.push(offsetY2);
 			ctx.stroke();
-			}
 		};
 		/*左ボタンが離されたらpathLogを作成し、sketchLogへ保存後削除する。
 		　また、lineToXLogとlineToYLogも初期化しておく。
 		*/
 		canvas.ontouchend = function(e){
-			pathLog.push(ctx.strokeStyle,ctx.lineWidth,offsetX,offsetY,lineToXLog,lineToYLog);
+			pathLog.push(ctx.strokeStyle,ctx.lineWidth,offsetX1,offsetY1,lineToXLog,lineToYLog);
 			sketchLog.push(pathLog);
 			pathLog = [];
 			lineToXLog =[];
 			lineToYLog =[];
 		};
 		//ポインタが画面外へ出て行った時の挙動
-		canvas.onmouseout = function (e){
-			if(e.buttons === 1){
+		canvas.ontouchleave = function (e){
 			memoryLog = [];
-			pathLog.push(ctx.strokeStyle,ctx.lineWidth,offsetX,offsetY,lineToXLog,lineToYLog);
+			pathLog.push(ctx.strokeStyle,ctx.lineWidth,offsetX1,offsetY1,lineToXLog,lineToYLog);
 			sketchLog.push(pathLog);
 			pathLog = [];
 			lineToXLog =[];
 			lineToYLog =[];
-			}
 		};
 		//ポインタが画面内へ入った時の挙動
-		canvas.onmouseover = function(e){
-			if(e.buttons === 1){
+		canvas.ontouchenter = function(e){
 			 ctx.beginPath();
 			 ctx.moveTo(offsetX5,offsetY5);
-			 offsetX = offsetX5;
-			 offsetY = offsetY5;
-			}
+			 offsetX1 = offsetX5;
+			 offsetY1 = offsetY5;
 		}
 		//戻るボタンと進むボタンの挙動
 		var sketchLog = [];//今までの全ての描写情報を保存する配列を用意
@@ -314,99 +315,6 @@ window.onload = function () {
 			}
 			var imgUrl =canvas.toDataURL();	
 			window.open(imgUrl);
-		}
-		/*
-		//塗りつぶしの実装(他に、太さを4.6.8.10.14に変更)
-		document.onkeydown = function(e){
-			if(e.key === 't'){
-				rihgtCheck(offsetX,offsetY);
-				downCheck(offsetX,offsetY);
-				leftCheck(offsetX,offsetY);
-				upCheck(offsetX,offsetY);
-				function rihgtCheck(numX,numY){
-					for (var i=0; i < w; i=i+2){
-						var imagedata1 = ctx.getImageData(numX+i,numY,1,1);
-						var imagedata2 = ctx.getImageData(numX+i+2,numY,1,1);
-						if (imagedata1.data[0] === imagedata2.data[0] && imagedata1.data[1] === imagedata2.data[1] && imagedata1.data[3] === imagedata2.data[3]){
-									return false;
-						} else {
-							ctx.beginPath();
-							ctx.moveTo(numX+i,numY);
-							ctx.lineTo(numX+i+2,numY);
-							ctx.stroke();
-						}
-					};
-				}
-				function downCheck(numX,numY){
-					for (var i=0; i < w; i=i+2){
-						var imagedata1 = ctx.getImageData(numX,numY+i,1,1);
-						var imagedata2 = ctx.getImageData(numX,numY+i+2,1,1);
-						if (imagedata1.data[0] === imagedata2.data[0] && imagedata1.data[1] === imagedata2.data[1] && imagedata1.data[3] === imagedata2.data[3]){
-									return false;
-						} else {
-							ctx.beginPath();
-							ctx.moveTo(numX,numY+i);
-							ctx.lineTo(numX,numY+i+2);
-							ctx.stroke();
-						}
-					};
-				}
-				function leftCheck(numX,numY){
-					for (var i=0; i < w; i=i+2){
-						var imagedata1 = ctx.getImageData(numX-i,numY,-1,-1);
-						var imagedata2 = ctx.getImageData(numX-i-2,numY,-1,-1);
-						if (imagedata1.data[0] === imagedata2.data[0] && imagedata1.data[1] === imagedata2.data[1] && imagedata1.data[3] === imagedata2.data[3]){
-									return false;
-						} else {
-							ctx.beginPath();
-							ctx.moveTo(numX-i,numY);
-							ctx.lineTo(numX-i-2,numY);
-							ctx.stroke();
-						}
-					};
-				}
-				function upCheck(numX,numY){
-					for (var i=0; i < w; i=i+2){
-						var imagedata1 = ctx.getImageData(numX,numY-i,-1,-1);
-						var imagedata2 = ctx.getImageData(numX,numY-i-2,-1,-1);
-						if (imagedata1.data[0] === imagedata2.data[0] && imagedata1.data[1] === imagedata2.data[1] && imagedata1.data[3] === imagedata2.data[3]){
-									return false;
-						} else {
-							ctx.beginPath();
-							ctx.moveTo(numX,numY-i);
-							ctx.lineTo(numX,numY-i-2);
-							ctx.stroke();
-						}
-					};
-				}
-			}
-		}
-		*/
-		//塗りつぶしの実装（isPointInPath()メソッドを使ってみる
-		document.onkeydown = function(e){
-			if (e.key === 'f'){
-				ctx.save();
-				if(sketchLog.length > 0){
-					var s = sketchLog.length-1;
-					console.log(s);
-					ctx.beginPath();
-					console.log(sketchLog[s][0]);
-					ctx.lineWidth = 5;
-					ctx.moveTo(sketchLog[s][2],sketchLog[s][3]);
-					for (var k = 0; k < sketchLog[s][4].length; k++){
-						ctx.lineTo(sketchLog[s][4][k],sketchLog[s][5][k]);
-					}
-				}
-		 	}
-				for(var fX = 1;fX < w; fX = fX+4){
-					for(var fY = 1; fY < h; fY = fY+4){
-						if ( ctx.isPointInPath(fX,fY)){
-							ctx.lineTo(fX,fY);
-						}
-					}
-				}
-				ctx.stroke();
-				ctx.restore();
 		}
 	}
 }
