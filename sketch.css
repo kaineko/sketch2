@@ -13,7 +13,7 @@ body{
 	width:100%;
 }
 #panel{
-	margin:0;
+	margin:0 3px 0 0;
 	width:6%;
 	height:100%;
 	float:left;
