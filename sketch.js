@@ -49,7 +49,7 @@ window.onload = function () {
 	canvas.width = w;
 	canvas.height = h;
 	var panel = document.getElementById('panel');
-	panel.style.margin = '0 w/100';
+	panel.style.margin = '0 10*w/100';
 	
 	if (canvas && canvas.getContext){
 		var ctx = canvas.getContext('2d');
