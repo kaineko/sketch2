@@ -2,7 +2,7 @@ html{
 	height:100%;
 }
 body{
-	position:fixed;
+	//position:fixed;
 	background-image:url(wood-pattern.jpg);
 	background-color:#808080;
 	width:100%;
