@@ -1,7 +1,7 @@
 html{
 	height:100%;
 }
-body{	margin:auto;
+body{	
 	overflow:hidden;
 	position:fixed;
 	background-image:url(wood-pattern.jpg);
@@ -110,5 +110,5 @@ button:hover {
 	margin:0%;
 	width:92%;
 	height:98%;
-	float:right;
+	float:left;
 }
