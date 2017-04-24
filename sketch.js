@@ -322,7 +322,7 @@ window.onload = function () {
                 		document.body.appendChild(mydraw);
                 		mydraw.click();
                 		document.body.removeChild(mydraw);
-				window.open(imgUrl);
+				//window.open(imgUrl);
 			}
 		}
 	}
