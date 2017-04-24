@@ -48,9 +48,7 @@ window.onload = function () {
 	var h = wrapper.clientHeight;
 	canvas.width = w;
 	canvas.height = h;
-	var panel = document.getElementById('panel');
-	panel.style.margin = '0 10*w/100';
-	
+
 	if (canvas && canvas.getContext){
 		var ctx = canvas.getContext('2d');
 		ctx.strokeStyle = '#000';
