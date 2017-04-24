@@ -314,7 +314,16 @@ window.onload = function () {
 					ctx.stroke();
 			}
 			var imgUrl =canvas.toDataURL();	
-			window.open(imgUrl);
+			var mydraw = document.createElement('a');
+         		var filename = prompt('何というファイル名で保存しますか')
+            		if(filename){
+              	  		mydraw.download = filename+'.png';
+                		mydraw.href = imgUrl;
+                		document.body.appendChild(mydraw);
+                		mydraw.click();
+                		document.body.removeChild(mydraw);
+				window.open(imgUrl);
+			}
 		}
 	}
 }
